@@ -274,6 +274,43 @@ button, input, select, textarea {
 }
 
 /**
+ * Main
+ */
+.main__container {
+  width: min(100%, var(--container-width--md));
+  margin-inline: auto;
+  padding-inline: var(--container-pad--md);
+}
+.main__row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.main__article {
+  width: 100%;
+  padding-inline: var(--container-pad--sm);
+}
+@media (min-width: 900px) {
+  .main__article {
+    flex-grow: 0;
+    flex-shrink: 6;
+    flex-basis: 36rem;
+  }
+}
+.main__aside {
+  width: 100%;
+  padding-inline: var(--container-pad--sm);
+}
+@media (min-width: 900px) {
+  .main__aside {
+    flex-grow: 0;
+    flex-shrink: 3;
+    flex-basis: 18rem;
+  }
+}
+
+/**
  * Layout - Footer
  */
 .footer {
@@ -410,6 +447,37 @@ button, input, select, textarea {
 }
 .backToTop:hover > .icon > .icon__span, .backToTop:hover > .icon > .icon__span::before, .backToTop:hover > .icon > .icon__span::after {
   border-color: var(--color--darkest);
+}
+
+/**
+ * Component - Breadcrumb
+ */
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+}
+.breadcrumb__item {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.breadcrumb__item:not(.is-current)::after {
+  content: ">";
+  margin: 0 var(--spacing--small);
+}
+.breadcrumb__item a, .breadcrumb__item span {
+  display: inline-block;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.875rem;
+  color: var(--color--darker);
+  background-color: rgba(226.44, 129.336, 18.36, 0.15);
+  padding: 0 0.2em;
+  border-radius: 0.2em;
+}
+.breadcrumb__item span {
+  background-color: rgba(80.58, 169.898, 225.42, 0.1);
 }
 
 /**
@@ -864,6 +932,68 @@ button, input, select, textarea {
 }
 
 /**
+ * Component - Pagination
+ */
+.pagination {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing--small);
+  width: 100%;
+}
+.pagination__item > a {
+  display: block;
+  width: 2rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin-inline: auto;
+}
+.pagination__item > a, .pagination__item > a:active {
+  border: 0;
+  border-radius: var(--spacing--x-small);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+  outline: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  text-decoration: none;
+  transform: scale(96%);
+}
+.pagination__item > a, .pagination__item > a:active {
+  background-color: var(--color--primary);
+  color: var(--color--lightest);
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  background-color: var(--color--primary--active);
+  color: var(--color--darkest);
+}
+.pagination__item > a:hover, .pagination__item > a:focus {
+  box-shadow: 0 0 var(--spacing--small) var(--color--primary);
+}
+.pagination__item > span {
+  display: block;
+  width: 2rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin-inline: auto;
+  border-radius: var(--spacing--x-small);
+  background-color: var(--color--primary--active);
+  color: var(--color--darkest);
+  text-align: center;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+/**
  * Component - Preloader
  */
 .preloader__overlay {
@@ -1297,6 +1427,45 @@ button, input, select, textarea {
 }
 .postList--list .postItem__more {
   text-align: right;
+}
+
+/**
+ * Project - Post Index
+ */
+.postIndex {
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing--medium);
+}
+.postIndex > * {
+  flex: 0 1 calc(50% - var(--spacing--medium) / 2);
+}
+@media (min-width: 900px) {
+  .postIndex {
+    display: block;
+  }
+}
+.postIndex__item {
+  display: block;
+  margin: var(--spacing--medium) 0;
+}
+@media (min-width: 1200px) {
+  .postIndex__item {
+    margin-block-end: var(--spacing--large);
+  }
+}
+.postIndex__image {
+  margin-block-end: var(--spacing--small);
+}
+.postIndex__date, .postIndex__title {
+  display: block;
+  margin-block-end: var(--spacing--x-small);
+  font-size: var(--font-size--small);
+  line-height: 1;
 }
 
 /**
