@@ -5,4 +5,8 @@
 #map {
   width: 100%;
   height: 65vh;
+
+  @media (min-width: breakpoint("md")) {
+    height: 80vh;
+  }
 }
