@@ -1,0 +1,42 @@
+/**
+ * Project - Log
+ */
+
+#log {
+  summary {
+    border-block-end: 1px dashed theme-color("light");
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  h3, h4 {
+    font-weight: 700;
+  }
+
+  h3::before {
+    content: "■ ";
+    color: theme-color("primary");
+  }
+
+  h4::before {
+    content: "◎ ";
+    color: theme-color("secondary");
+  }
+
+  strong {
+    font-weight: 700;
+    border-block-end: 1px dashed theme-color("light");
+  }
+
+  em {
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .log {
+    &__body {
+      padding: space() 0;
+      border-block-end: 1px dashed theme-color("light");
+    }
+  }
+}
