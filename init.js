@@ -38,9 +38,10 @@ new DrawerMenu();
 //import Slider from './js/slider.js';
 //new Slider();
 
-// Log
+// Status & Log
 import Log from './js/log.js';
 new Log();
+new Log(document.getElementById('status'), '/status/', 3, true);
 
 // Map
 import Map from './js/map.js';

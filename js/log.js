@@ -3,8 +3,9 @@
 import { marked } from 'https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.esm.js';
 
 export default class Log {
-  constructor(container, logDir = '/log/', limit = 3) {
+  constructor(container, logDir = '/log/', limit = 3, isOpen = false) {
     this.container = container || document.getElementById('log');
+    this.isOpen = isOpen;
     this.loadLog(logDir, limit);
   }
 
@@ -44,7 +45,7 @@ export default class Log {
 
     // details 要素作成
     const details = document.createElement('details');
-    if (i === 0) details.open = true; // 最初の1件だけ開く
+    if (this.isOpen && i === 0) details.open = true; // 最初の1件だけ開く
 
     // summary に反映
     const summary = document.createElement('summary');

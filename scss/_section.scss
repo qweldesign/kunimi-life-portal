@@ -17,9 +17,9 @@
     padding-block-end: space("large");
   }
 
-  &__heading {
-    margin: space("medium") 0;
-    text-align: center;
-    text-transform: capitalize;
+  &__title {
+    padding-inline-start: space("small");
+    border-inline-start: space("x-small") solid theme-color("light");
+    font-weight: 700;
   }
 }
