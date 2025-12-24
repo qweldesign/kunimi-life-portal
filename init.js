@@ -41,3 +41,7 @@ new DrawerMenu();
 // Log
 import Log from './js/log.js';
 new Log();
+
+// Map
+import Map from './js/map.js';
+new Map();

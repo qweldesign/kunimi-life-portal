@@ -751,6 +751,14 @@ button, input, select, textarea {
 }
 
 /**
+ * Project - Map
+ */
+#map {
+  width: 100%;
+  height: 65vh;
+}
+
+/**
  * Utility - Spacing
  */
 .m-none {
