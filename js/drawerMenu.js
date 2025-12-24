@@ -9,6 +9,9 @@ export default class DrawerMenu {
   // options
   // siteBrand, primaryMenu, socialMenu: クローンする対象
   constructor(options = {}) {
+    const gNav = document.querySelector('.gNav');
+    if (!gNav) return;
+
     // クローンする対象
     this.siteBrand = options.siteBrand ||
       document.querySelector('.gNav__siteBrand');

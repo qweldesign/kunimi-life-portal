@@ -206,50 +206,8 @@ button, input, select, textarea {
 /**
  * Layout - G Nav
  */
-.gNav {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-.gNav__siteBrand {
-  flex: 0 1 9rem;
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-}
 .gNav__primaryMenu {
-  list-style: none;
-  padding-inline-start: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  flex: 0 1 36rem;
-  margin: 0;
-  text-transform: capitalize;
-}
-.gNav__socialMenu {
-  list-style: none;
-  padding-inline-start: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  flex: 0 1 9rem;
-  margin: 0;
-}
-.gNav__menuItem {
-  margin: 0;
-}
-.gNav__menuItem--social {
-  width: 3rem;
-  text-align: center;
-}
-.gNav__menuItem a {
-  display: block;
-  line-height: 1;
+  display: none;
 }
 
 /**
@@ -529,11 +487,6 @@ button, input, select, textarea {
   text-align: center;
   outline: 0;
   cursor: pointer;
-}
-@media (min-width: 900px) {
-  .drawer {
-    display: none;
-  }
 }
 .drawer__navicon {
   position: absolute;
