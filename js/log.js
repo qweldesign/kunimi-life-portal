@@ -3,16 +3,14 @@
 import { marked } from 'https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.esm.js';
 
 export default class Log {
-  constructor(container, logDir, limit = 3) {
+  constructor(container, logDir = '/log/', limit = 3) {
     this.container = container || document.getElementById('log');
-    this.logDir = logDir || '/log/';
-
-    this.loadLog(limit);
+    this.loadLog(logDir, limit);
   }
 
-  async loadLog(limit) {
+  async loadLog(logDir, limit) {
     // index.json を読み込む
-    const res = await fetch(`${this.logDir}index.json`);
+    const res = await fetch(`${logDir}index.json`);
     let files = await res.json();
 
     // markdown を新しい順にソート
@@ -21,25 +19,45 @@ export default class Log {
     // 各 markdown を読み込んで表示
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const date = file.replace('.md', '');
-
-      const mdRes = await fetch(`${this.logDir}${file}`);
-      const mdText = await mdRes.text();
-      const html = marked.parse(mdText); // marked を使って HTML に変換
-
-      const details = document.createElement('details');
-      if (i === 0) details.open = true; // 最初の1件だけ開く
-
-      const summary = document.createElement('summary');
-      summary.textContent = date;
-
-      const content = document.createElement('div');
-      content.className = 'log__body';
-      content.innerHTML = html;
-
-      details.appendChild(summary);
-      details.appendChild(content);
-      this.container.appendChild(details);
+      this.renderLog(`${logDir}${file}`, i);
     }
+  }
+
+  async renderLog(url, i) {
+    const res = await fetch(url);
+    const text = await res.text();
+
+    // フロントマター抽出
+    let meta = {};
+    let body = text;
+    const match = text.match(/^---\s*([\s\S]*?)\s*---\s*([\s\S]*)/);
+    if (match) {
+      const metaText = match[1];
+      body = match[2];
+
+      metaText.split('\n').forEach(line => {
+        const [key, ...rest] = line.split(':');
+        if (!key || rest.length === 0) return;
+        meta[key.trim()] = rest.join(':').trim();
+      });
+    }
+
+    // details 要素作成
+    const details = document.createElement('details');
+    if (i === 0) details.open = true; // 最初の1件だけ開く
+
+    // summary に反映
+    const summary = document.createElement('summary');
+    summary.textContent = `${meta.date ?? ''} | ${meta.title ?? ''}`;
+
+    // marked を使って本文を HTML に変換
+    const content = document.createElement('div');
+    content.className = 'log__body';
+    content.innerHTML = marked.parse(body);
+
+    // 挿入
+    details.appendChild(summary);
+    details.appendChild(content);
+    this.container.appendChild(details);
   }
 }
