@@ -702,9 +702,6 @@ button, input, select, textarea {
 .section__inner {
   padding-block: var(--spacing--large);
 }
-:where(.section__inner) {
-  background-color: var(--color--lightest);
-}
 .section__inner {
   width: min(100%, var(--container-width--lg));
   margin-inline: auto;
