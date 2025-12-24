@@ -3,7 +3,31 @@
  */
 
 .footer {
-  padding: space("x-large");
-  @include background($theme-accent);
-  text-align: center;
+  padding: space("large") 0;
+  @include background("primary");
+  @include small-text();
+
+  &__inner {
+    @include container("sm");
+  }
+
+  &__table {
+    @include table();
+
+    tr {
+      border-block-end: none;
+
+      &:first-child {
+        border-block-start: none;
+      }
+    }
+
+    th, td {
+      padding: space("x-small");
+    }
+
+    td:nth-child(1) {
+      width: 5.25rem;
+    }
+  }
 }
