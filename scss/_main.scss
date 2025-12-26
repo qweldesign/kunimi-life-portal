@@ -3,5 +3,7 @@
  */
 
 .main {
-  
+  &__inner {
+    @include container();
+  }
 }

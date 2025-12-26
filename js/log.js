@@ -5,6 +5,7 @@ import { marked } from 'https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib
 export default class Log {
   constructor(container, logDir = '/log/', limit = 3, isOpen = false) {
     this.container = container || document.getElementById('log');
+    if (!this.container) return;
     this.isOpen = isOpen;
     this.loadLog(logDir, limit);
   }

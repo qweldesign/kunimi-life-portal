@@ -46,3 +46,7 @@ new Log(document.getElementById('status'), '/status/', 3, true);
 // Map
 import Map from './js/map.js';
 new Map();
+
+// Properties
+import Properties from './js/properties.js';
+new Properties();

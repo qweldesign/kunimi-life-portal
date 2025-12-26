@@ -196,10 +196,11 @@ button, input, select, textarea {
   margin-inline: auto;
   padding-inline: var(--container-pad--lg);
 }
-.header__title {
+.header__title a {
   color: #fff;
   font-weight: 700;
   font-size: 1.5rem;
+  text-decoration: none;
   text-shadow: 0 2px 6px #000000;
 }
 
@@ -213,6 +214,12 @@ button, input, select, textarea {
 /**
  * Main
  */
+.main__inner {
+  width: min(100%, var(--container-width--lg));
+  margin-inline: auto;
+  padding-inline: var(--container-pad--lg);
+}
+
 /**
  * Layout - Footer
  */
@@ -711,6 +718,35 @@ button, input, select, textarea {
   .map {
     height: 80vh;
   }
+}
+
+/**
+ * Project - Properties
+ */
+.properties {
+  margin-block: var(--spacing--medium);
+  width: 100%;
+  overflow-x: auto;
+}
+.properties table {
+  width: 72rem;
+  margin: 0 auto;
+}
+.properties thead, .properties tbody {
+  width: 100%;
+}
+.properties thead {
+  border: 0;
+}
+.properties tr {
+  border-block-end: 1px solid var(--color--lighter);
+}
+.properties tr:first-child {
+  border-block-start: 1px solid var(--color--lighter);
+}
+.properties th, .properties td {
+  padding: var(--spacing--small);
+  border: 0;
 }
 
 /**

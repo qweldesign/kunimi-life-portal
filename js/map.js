@@ -2,6 +2,9 @@
 
 export default class Map {
   constructor() {
+    this.container = document.getElementById('map');
+    if (!this.container) return;
+
     // 地図の初期化
     this.map = L.map('map', {
       zoomControl: true,
@@ -21,31 +24,28 @@ export default class Map {
 
     // アイコンの定義
     this.icons = {
-      "調査前": L.icon({
+      // 保留中
+      "hold": L.icon({
         iconUrl: "./assets/pin-gray.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
       }),
-      "調査済": L.icon({
+      // 調査前
+      "survey": L.icon({
         iconUrl: "./assets/pin-blue.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
       }),
-      "案内可": L.icon({
+      // 内覧可
+      "available": L.icon({
         iconUrl: "./assets/pin-green.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
       }),
-      "拠点": L.icon({
-        iconUrl: "./assets/pin-yellow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34]
-      }),
-      "施設": L.icon({
+      "facility": L.icon({
         iconUrl: "./assets/pin-red.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -59,12 +59,13 @@ export default class Map {
       .then(res => res.json())
       .then(properties => {
         properties.forEach(p => {
-          const icon = this.icons[p.category] ?? this.icons["調査前"];
+          const icon = (p.category === 'facility') ? this.icons[p.category] : this.icons[p.status];
           const marker = L.marker([p.lat, p.lng], { icon }).addTo(this.map);
+          const statusText = p.category === 'facility' ? '施設' : p.status === 'hold' ? '保留中' : p.status === 'survey' ? '調査前' : p.status === 'available' ? '内覧可' : '不明';
 
           // ポップアップ設定
           marker.bindPopup(`
-            <strong>${p.name} | ${p.category}</strong>
+            <strong>${p.name} | ${statusText}</strong>
             <br><span>${p.address}</span>
             <br><a href="#${p.id}">詳細を見る</a>
           `);
